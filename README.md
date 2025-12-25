@@ -1,56 +1,42 @@
-Previsão de Preços de Energia com Prophet (Séries Temporais)
-Este projeto implementa um modelo de aprendizado de máquina utilizando a biblioteca Facebook Prophet para prever o preço horário da energia elétrica. O modelo integra 14 variáveis externas (regressores) para capturar a dinâmica complexa entre oferta, demanda e clima.
+Com certeza! Vou estruturar o conteúdo do seu README.md com a sintaxe Markdown completa. Você pode simplesmente copiar o bloco de código abaixo e colar no seu arquivo.
 
-📊 Resultados e Performance
-O modelo foi treinado com dados de agosto a dezembro de 2018 e validado para o início de 2019.
+Markdown
 
-RMSE (Erro Quadrático Médio): 3.96.
+# ⚡ Previsão de Preços de Energia com Prophet
 
-MAPE (Erro Médio Absoluto Percentual): ~5.3%.
+![Status](https://img.shields.io/badge/Status-Finalizado-success)
+![Precisão](https://img.shields.io/badge/RMSE-3.96-blue)
 
-Estabilidade: A tendência foi controlada (changepoint_prior_scale=0.01) para garantir previsões realistas mesmo sob alta carga.
+Este projeto utiliza o modelo **Facebook Prophet** para realizar a previsão horária do preço de energia elétrica, integrando **14 regressores externos** para capturar a complexidade do mercado energético.
 
-🛠️ Variáveis Utilizadas (Extra Regressors)
-O diferencial deste modelo é a utilização de múltiplos fatores que influenciam o preço:
+---
 
-Carga (Load): Previsão de carga total do sistema (máximo observado: 30619.0).
+## 📊 Performance do Modelo
 
-Geração: Dados de geração fóssil e renovável (solar, eólica, etc.).
+O modelo apresentou uma alta fidelidade aos dados reais, mantendo uma tendência estável mesmo em períodos de alta volatilidade.
 
-Clima: Temperatura e condições meteorológicas.
+* **Erro Quadrático Médio (RMSE):** `3.96`
+* **MAPE:** `~5.3%`
+* **Configuração de Tendência:** `changepoint_prior_scale = 0.01` (ajustado para evitar distorções por valores extremos)
 
-🚀 Como Executar o Projeto
-Pré-requisitos
-Certifique-se de ter o Python instalado. É recomendado o uso de um ambiente virtual (venv).
+---
 
-Instalação
-Clone o repositório:
+## 🛠️ Variáveis de Entrada (Extra Regressors)
 
-Bash
+Diferente de modelos simples, este projeto considera fatores críticos que influenciam o preço:
 
-git clone https://github.com/GuiAlves1611/prophet-model-energy.git
-Instale as dependências:
+1.  **Demanda:** `total load forecast` (com picos de até **30619.0**).
+2.  **Geração:** Matriz fóssil e renovável (eólica, solar, etc.).
+3.  **Clima:** Dados de temperatura e condições meteorológicas.
 
-Bash
+Esses regressores chegam a impactar o preço final em até **11 €** para cima ou para baixo, dependendo da carga do sistema.
 
+---
+
+## 🚀 Como Utilizar
+
+### 1. Instalação
+Clone o repositório e instale as dependências listadas no `requirements.txt`:
+```bash
+git clone [https://github.com/GuiAlves1611/prophet-model-energy.git](https://github.com/GuiAlves1611/prophet-model-energy.git)
 pip install -r requirements.txt
-Uso do Modelo
-Para utilizar o modelo treinado sem precisar reprocessar os dados:
-
-Python
-
-import joblib
-
-# Carregar o modelo salvo
-model = joblib.load('modelo_prophet_energia_v1.joblib')
-
-# Gerar previsão (requer dataframe com regressores)
-# forecast = model.predict(future_df)
-📈 Visualizações
-O projeto inclui visualizações interativas geradas com Plotly, permitindo analisar:
-
-Componentes da série (tendência, sazonalidade diária e impacto dos regressores).
-
-Comparação entre valores reais e previstos.
-
-Evolução do erro ao longo do horizonte de previsão.
