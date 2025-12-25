@@ -1,7 +1,3 @@
-Com certeza! Vou estruturar o conteúdo do seu README.md com a sintaxe Markdown completa. Você pode simplesmente copiar o bloco de código abaixo e colar no seu arquivo.
-
-Markdown
-
 # ⚡ Previsão de Preços de Energia com Prophet
 
 ![Status](https://img.shields.io/badge/Status-Finalizado-success)
