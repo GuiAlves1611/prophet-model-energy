@@ -1,38 +1,87 @@
-# ⚡ Previsão de Preços de Energia com Prophet
+# 🔌 Previsão Horária do Preço de Energia Elétrica com Prophet
 
-![Status](https://img.shields.io/badge/Status-Finalizado-success)
-![Precisão](https://img.shields.io/badge/RMSE-3.96-blue)
+## 📌 Visão Geral
+Este projeto tem como objetivo **prever o preço horário da energia elétrica** utilizando o modelo **Facebook Prophet**, incorporando **regressores externos** para capturar a complexidade do mercado energético, que é fortemente influenciado por demanda, geração e condições climáticas.
 
-Este projeto utiliza o modelo **Facebook Prophet** para realizar a previsão horária do preço de energia elétrica, integrando **14 regressores externos** para capturar a complexidade do mercado energético.
-
----
-
-## 📊 Performance do Modelo
-
-O modelo apresentou uma alta fidelidade aos dados reais, mantendo uma tendência estável mesmo em períodos de alta volatilidade.
-
-* **Erro Quadrático Médio (RMSE):** `3.96`
-* **MAPE:** `~5.3%`
-* **Configuração de Tendência:** `changepoint_prior_scale = 0.01` (ajustado para evitar distorções por valores extremos)
+O foco do projeto é apoiar **decisões estratégicas e operacionais** no setor de energia, como planejamento, compra e venda no mercado.
 
 ---
 
-## 🛠️ Variáveis de Entrada (Extra Regressors)
+## 🎯 Problema de Negócio
+O preço da energia elétrica apresenta **alta volatilidade**, influenciada por múltiplos fatores externos. Previsões imprecisas podem gerar impactos financeiros relevantes, especialmente em operações de grande volume.
 
-Diferente de modelos simples, este projeto considera fatores críticos que influenciam o preço:
+Este projeto busca responder à seguinte pergunta:
 
-1.  **Demanda:** `total load forecast` (com picos de até **30619.0**).
-2.  **Geração:** Matriz fóssil e renovável (eólica, solar, etc.).
-3.  **Clima:** Dados de temperatura e condições meteorológicas.
-
-Esses regressores chegam a impactar o preço final em até **11 €** para cima ou para baixo, dependendo da carga do sistema.
+> É possível melhorar a previsão do preço horário da energia ao incorporar variáveis externas como demanda, geração e clima?
 
 ---
 
-## 🚀 Como Utilizar
+## 👥 Stakeholders
+- Traders e analistas do mercado de energia  
+- Planejamento estratégico e operacional  
+- Gestores de risco  
+- Operadores do sistema elétrico  
 
-### 1. Instalação
-Clone o repositório e instale as dependências listadas no `requirements.txt`:
+---
+
+## 🧠 Abordagem Utilizada
+Foi utilizado o modelo **Facebook Prophet**, escolhido por:
+- Boa interpretabilidade  
+- Capacidade de lidar com sazonalidades  
+- Facilidade de integração de **regressores externos**
+
+Para evitar overfitting em períodos de alta volatilidade, o parâmetro de tendência foi ajustado:
+
+- **changepoint_prior_scale = 0.01**
+
+---
+
+## 🛠️ Variáveis de Entrada (Regressores Externos)
+O modelo incorpora **14 regressores**, incluindo:
+
+### 🔹 Demanda
+- Total load forecast  
+- Picos observados de até **30.619 MW**
+
+### 🔹 Geração
+- Fontes fósseis  
+- Fontes renováveis (eólica, solar, entre outras)
+
+### 🔹 Clima
+- Temperatura  
+- Condições meteorológicas  
+
+Esses fatores podem impactar o preço final em até **±11 €**, dependendo da carga e da composição do sistema.
+
+---
+
+## 📊 Avaliação do Modelo
+O modelo apresentou **alta aderência aos dados reais**, mantendo estabilidade mesmo em períodos de maior volatilidade.
+
+### Métricas utilizadas
+- **RMSE:** 3.96  
+- **MAPE:** ~5.3%
+
+O uso do MAPE permite avaliar o erro relativo, o que é especialmente relevante em séries temporais de preços.
+
+---
+
+## 📈 Resultados
+- Captura consistente de tendências e sazonalidades do preço horário  
+- A inclusão de regressores externos aumentou a estabilidade das previsões  
+- Resultados indicam potencial de uso como ferramenta de apoio à decisão  
+
+---
+
+## ⚠️ Limitações
+- O Prophet assume uma estrutura **aditiva**, podendo não capturar choques extremos do mercado  
+- A performance depende diretamente da qualidade dos regressores externos  
+- Eventos inesperados (crises energéticas, falhas sistêmicas) não são totalmente modelados  
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### 1️⃣ Clonar o repositório
 ```bash
-git clone [https://github.com/GuiAlves1611/prophet-model-energy.git](https://github.com/GuiAlves1611/prophet-model-energy.git)
-pip install -r requirements.txt
+git clone https://github.com/GuiAlves1611/prophet-model-energy.git
